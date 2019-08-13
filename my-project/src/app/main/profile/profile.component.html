@@ -1,0 +1,38 @@
+<!--<div class='logout'><button>Logout</button></div>-->
+<div class='container'>
+    <div class='profile'>
+        <div class="im">
+            <img *ngIf='User.PhotoPath != null' class='img' [src]='User.PhotoPath'>
+            <img *ngIf='User.PhotoPath == null && User.Sex' class='img' src='assets/Images/usermale.png'>
+            <img *ngIf='User.PhotoPath == null && !User.Sex' class='img' src='assets/Images/userfemale.jpg'>
+        </div>
+        <div class="namesurname">
+            <div class="name">{{User.Name+" "+User.Surname}}</div>
+            <div class="subscribers">Subscribers : {{User.Subscribers}}</div>
+            <div class="subscribers">Subscriptions : {{User.Subscriptions}}</div>
+        </div>
+        <div class='date'>
+            <div class='data'>Date of creation : {{User.DayOfCreation | date}}</div>
+            <div class='data'>Birthday : {{User.Birthday | date}}</div>
+            <div>Country : {{User.Country}}</div>
+            <div *ngIf='id == "dde71045-2d9a-42dd-8178-af9086521ff8"'>
+                <label>
+                    <input  (click)='Admin()'  [ngModel]="User.Admin"  type="checkbox" checked data-toggle="toggle"> Admin
+                </label>
+            </div>
+        </div>
+        <div class='buttons'>
+            <button *ngIf="User.DoSubscribed && User.Id != id" class='unsubscribed' (click)='Subscribe()' >Unsubscribe</button>
+            <button *ngIf="!User.DoSubscribed && User.Id != id" class='subscribed'  (click)='Subscribe()'>Subscribe</button>
+            <button *ngIf="id == User.Id" class='change' (click)='Change()'>Change</button>
+        </div>
+    </div>
+    <div class='nav'>
+        <div></div>
+        <div class='div'><a [routerLink]="['/profile/'+User.Id+'/myvideo']">Your videos</a></div>
+        <div class='div'><a [routerLink]="['/profile/'+User.Id+'/likedvideo']">Liked videos</a></div>
+        <div class='div'><a [routerLink]="['/profile/'+User.Id+'/dislikedvideo']">Disliked videos</a></div>
+        <div class='div'><a [routerLink]="['/profile/'+User.Id+'/addvideo']">Add video</a></div>
+    </div>
+</div>
+<router-outlet></router-outlet>

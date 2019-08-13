@@ -1,0 +1,112 @@
+<div class="container">
+    <div class='inform'>
+        <h1>Update information</h1>
+    </div>
+    <div class='grid'>
+       
+        <div class='data'>
+            <h3 class="alert alert-danger" *ngIf="dataError != null">{{dataError}}</h3>
+            <form #formData='ngForm'>
+                <div class='div'>
+                    <mat-form-field>
+                        <input matInput type='text' placeholder="Name" name='Name' #name [(ngModel)]='user.Name'
+                            minlength="3" maxlength="15" required pattern="[A-Z]{1}[a-z]+">
+                        <mat-error *ngIf="!name.valid">Name is neccessary, minimum 3, maximum 15 symbols</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class='div'>
+                    <mat-form-field>
+                        <input matInput type='text' placeholder="Surname" name='Surname' #surname
+                            [(ngModel)]='user.Surname' pattern="[A-Z]{1}[a-z]+" minlength="3" maxlength="15" required>
+                        <mat-error *ngIf="!surname.valid">Surname is neccessary, minimum 3, maximum 15 symbols
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class='div'>
+                    <mat-form-field>
+                        <input matInput type='date' placeholder="Birthday" name='Birthday' #birthday
+                            [(ngModel)]='user.Birthday' min="1940-01-01" max="2015-01-01" >
+                    </mat-form-field>
+                </div>
+                <div class='div'>
+                    <mat-form-field>
+                        <mat-label>Country</mat-label>
+                        <mat-select [(value)]='user.Country' required>
+                            <mat-option value="Ukraine">Ukraine</mat-option>
+                            <mat-option value="Russia">Russia</mat-option>
+                            <mat-option value="Belarus">Belarus</mat-option>
+                            <mat-option value="German">German</mat-option>
+                            <mat-option value="US">US</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <button [disabled]='!formData.valid' (click)='UpdateData()'>Update Data</button>
+            </form>
+        </div>
+
+        <div class="data">
+                <h3 class="alert alert-danger" *ngIf="photoError != null">{{photoError}}</h3>
+            <div>
+                <img *ngIf='user.PhotoPath != null' class='img' [src]='user.PhotoPath'>
+                <img *ngIf='user.PhotoPath == null && user.Sex' class='img' src='assets/Images/usermale.png'>
+                <img *ngIf='user.PhotoPath == null && !user.Sex' class='img' src='assets/Images/userfemale.jpg'>
+            </div>
+            <div>
+                <input type="file" id='photo' name="photo" class="inputfile" (change)='LoadPhoto($event)' />
+                <label class='label' for="photo">{{photoMessage}}</label>
+            </div>
+        </div>
+
+        <div class="data">
+            <h3 class="alert alert-danger" *ngIf="loginError != null">{{loginError}}</h3>
+            <form class='form3' #formLogin='ngForm'>
+                <div class='div'>
+                    <mat-form-field>
+                        <input matInput type='text' name='phonenumber' #phonenumber [(ngModel)]='userLogin.PhoneNumber'
+                            required pattern="[0-9]{10,14}(\s*)?$" placeholder="Phone number">
+                        <mat-error *ngIf='!phonenumber.valid'>Phone number is neccessary</mat-error>
+                    </mat-form-field>
+                    <mat-error *ngIf="phonenumber.valid">Birthday is neccessary</mat-error>
+                </div>
+                <div class='div'>
+                    <mat-form-field>
+                        <input matInput type='text' name='email' #email [(ngModel)]='userLogin.Email' required
+                            pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                            placeholder="Email">
+                        <mat-error *ngIf='!email.valid'>Email is neccessary</mat-error>
+                    </mat-form-field>
+                </div>
+                <button [disabled]='!formLogin.valid' (click)='UpdateLogin()'>Update Login</button>
+            </form>
+        </div>
+
+        <div class="data">
+            <h3 class="alert alert-danger" *ngIf="passwordError != null">{{passwordError}}</h3>
+            <form #formPassword='ngForm'>
+                <div class='div'>
+                    <mat-form-field>
+                        <input matInput type='password' name='oldpassword' #oldpassword
+                            [(ngModel)]='userPassword.OldPassword' required pattern="[A-Z]+[a-z]+[0-9]+" minlength="8"
+                            placeholder="OldPassword">
+                        <mat-error *ngIf='!oldpassword.valid'>OldPassword is neccessary</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class='div'>
+                    <mat-form-field>
+                        <input matInput type='password' name='password' #password [(ngModel)]='userPassword.Password'
+                            required pattern="[A-Z]+[a-z]+[0-9]+" minlength="8" placeholder="Password">
+                        <mat-error *ngIf='!password.valid'>Password is neccessary</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class='div'>
+                    <mat-form-field>
+                        <input matInput type='password' name='confirmpassword' #confirmpassword [(ngModel)]='userPassword.PasswordConfirm' 
+                            required pattern="[A-Z]+[a-z]+[0-9]+" minlength="8" placeholder="PasswordConfirm">
+                        <mat-error *ngIf='!confirmpassword.valid'>PasswordConfirm is neccessary</mat-error>
+                    </mat-form-field>
+                </div>
+                <button [disabled]='!formPassword.valid'  (click)='UpdatePassword()'>Update Password</button>
+            </form>
+        </div>
+    </div>
+</div>

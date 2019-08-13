@@ -1,0 +1,107 @@
+body{
+    background-image: url(../Images/Registration.jpg);
+    margin-left: 2.5vw;
+    width: 95vw;
+    height: 100vh;
+}
+.form{
+    padding: 0px 20px;
+}
+.lab{
+    display: block;
+    font-size: 20px;
+    text-align: left;
+}
+.sex
+{
+    margin-left: 20px;
+    font-size: 15px;
+}
+p{
+    font-size: 30px;
+}
+h3{
+    font-size: 18px;
+}
+.alter h3{
+    padding: 10px;
+}
+
+input.form-control.ng-touched.ng-invalid
+{
+    border: solid red 2px;
+}
+input.form-control.ng-touched.ng-valid
+{
+    border: solid green 2px;
+}
+
+.female
+{
+    font-size: 32px;
+    margin-left: 20px;
+}
+.male
+{
+    font-size: 32px;
+    margin-left: 20px;
+}
+
+.reg 
+{
+    display: block;
+    position: relative;
+    text-align: center;
+    
+}
+
+.Registration{
+    display: block;
+    position: absolute;
+    background-color: white; 
+    padding: 20px 40px;
+    
+    margin-left: 30vw;
+    margin-right: auto;
+    margin-top: 4vh;
+    min-width: 500px;
+
+    border-radius: 10px;
+    border: solid 2px black;
+}
+.RegP{
+    text-align: center;
+    display: inline-block;
+}
+.RegP :after{
+    display: block;
+    content: "";
+    width: 200px;
+    height: 3px;
+    background-color: aqua;
+    margin: 10px;
+
+}
+button{
+    display: inline-block;
+    font-size: 25px;
+    background-color: white;
+    color: black;
+    transition: color .3s linear, background-color .3s linear;
+    cursor: pointer; 
+    border-radius: 5px; 
+}
+button:hover{
+    background-color: black;
+    color: white;
+    
+}
+select{
+    margin-left: 20px;
+    width: 125px;
+    font-size: 17px;
+    border-radius: 5px;
+}
+.list{
+    display: flex;
+}

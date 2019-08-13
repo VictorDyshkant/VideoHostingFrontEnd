@@ -1,0 +1,153 @@
+<body>
+    <div class="reg">
+        <div class="Registration">
+            <div class="RegP">
+                <p>Registration</p>
+            </div>
+            <h3 class="alert alert-danger" *ngIf="message != null">{{message}}</h3>
+
+            <div *ngIf="next == false; else Data">
+
+                <form class="form" #myForm="ngForm">
+                    <div class='form-group'>
+                        <label class="lab" for="Login">Phone number</label>
+                        <input class="form-control" placeholder="Phone number" type='text' id="Login" name='login'
+                            #login="ngModel" ngModel required
+                            pattern="[0-9]{10,14}(\s*)?$">
+                        <div [hidden]="login.valid || login.untouched" class="alter alert-danger">
+                            <div *ngIf="login.value == ''">
+                                Login is neccesary
+                            </div>
+                            <div *ngIf="login.value != ''">
+                                Validation error
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='form-group'>
+                        <label class="lab" for="Email">Email</label>
+                        <input class="form-control" placeholder="Email" type='text' id="Email" name='email'
+                            #email="ngModel" ngModel required
+                            pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$">
+                        <div [hidden]="email.valid || email.untouched" class="alter alert-danger">
+                            <div *ngIf="email.value == ''">
+                                Email is neccesary
+                            </div>
+                            <div *ngIf="email.value != ''">
+                                Validation error
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='form-group'>
+                        <label class="lab" for="Password">Password</label>
+                        <input type='password' placeholder="First upper leter and last number, at least 8 symbols "
+                            class="form-control" id="Password" name='password' #password="ngModel" ngModel required
+                            minlength="8" pattern="[A-Z]+[a-z||0-9]+[0-9]+">
+                        <div [hidden]="password.valid || password.untouched" class="alter alert-danger">
+                            <div *ngIf="password.value == ''">
+                                Passwords is neccesary
+                            </div>
+                            <div *ngIf="password.value != ''">
+                                Validation error
+                            </div>
+                        </div>
+                    </div>
+                    <div class='form-group'>
+                        <label class="lab" for="ConfirmPassword">Confirm Password</label>
+                        <input type='password' placeholder="Confirm passwords" class="form-control" id="ConfirmPassword"
+                            name='confirmPassword' #confirmPassword="ngModel" ngModel required minlength="8"
+                            pattern="[A-Z]+[a-z]+[0-9]+">
+                        <div [hidden]="(confirmPassword.valid || confirmPassword.untouched) && (confirmPassword.value == password.value)"
+                            class="alter alert-danger">
+                            <div *ngIf="confirmPassword.value == ''">
+                                Passwords is neccesary
+                            </div>
+                            <div *ngIf="confirmPassword.value != password.value; else el">
+                                Passwords are not equaled
+                            </div>
+                            <ng-template #el>
+                                <div *ngIf="confirmPassword.value != ''">
+                                    Validation error
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </form>
+                <button *ngIf="myForm.valid && confirmPassword.value == password.value;else els "
+                    (click)="FirstRegistration(myForm.value.login,myForm.value.email,myForm.value.password,myForm.value.confirmPassword)">Registrate</button>
+                <ng-template #els>
+                    <button (click)="Error()">Registrate</button>
+                </ng-template>
+            </div>
+
+
+            <ng-template #Data>
+                <div>
+                    <form #DataForm="ngForm">
+                        <div class="form-group">
+                            <label class="lab" for="Name">Name </label>
+                            <input id='Name' type="text" placeholder="First upper letter, min = 3, max = 15"
+                                class="form-control" name='name' #name="ngModel" ngModel required
+                                pattern="[A-Z]{1}[a-z]+" minlength="3" maxlength="15">
+                            <div [hidden]="name.valid || name.untouched" class="alter alert-danger">
+                                <div *ngIf="name.value == ''">
+                                    Login is neccesary
+                                </div>
+                                <div *ngIf="name.value != ''">
+                                    Validation error
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lab" for='Surname'>Surname</label>
+                            <input placeholder="First upper letter, min = 3, max = 15" id="Surname" class="form-control"
+                                name='surname' #surname="ngModel" ngModel required pattern="[A-Z]{1}[a-z]+"
+                                minlength="3" maxlength="15">
+                            <div [hidden]="surname.valid || surname.untouched" class="alter alert-danger">
+                                <div *ngIf="surname.value == ''">
+                                    Login is neccesary
+                                </div>
+                                <div *ngIf="surname.value != ''">
+                                    Validation error
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lab" for='Male'>Check your gender : </label>
+                            <br>
+
+                            <input class="male" type="radio" id="Male" name='sex' #sex="ngModel" ngModel value=true
+                                required>
+                            <label class="sex">Male</label>
+
+                            <input class="female" type="radio" name='sex' #sex="ngModel" ngModel value=false>
+                            <label class="sex">Female</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="lab" for="Birthday">Birthday</label>
+                            <input id="Birthday" type="date" min="1940-01-01" max="2015-01-01" class="form-control"
+                                name='Birthday' #birthday="ngModel" ngModel required>
+                        </div>
+                        <div class="form-group">
+                            <div class="list">
+                                <label class="lab" for="Country">Country</label>
+                                <select name="Country" #country="ngModel" ngModel required>
+                                    <option value="Ukraine">Ukraine</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="Belarus">Belarus</option>
+                                    <option value="German">German</option>
+                                    <option value="US">US</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button *ngIf="DataForm.valid"
+                            (click)="SecondRegistration(DataForm.value.name,DataForm.value.surname,DataForm.value.sex,DataForm.value.Birthday,DataForm.value.Country)">Registrate</button>
+
+                        <button (click)="Error()" *ngIf="DataForm.invalid">Registrate</button>
+                    </form>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</body>

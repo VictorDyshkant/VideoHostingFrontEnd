@@ -1,0 +1,31 @@
+<div class='container'>
+    <div id="error" *ngIf="errorMessage != null" class="alter alert-danger">
+        {{errorMessage}}
+    </div>
+    <div class='input'>
+        <mat-form-field>
+            <input matInput type='text' placeholder="Name" #name='ngModel' ngModel minlength="5" required>
+            <mat-error *ngIf="name.valid">Name is neccessary, minimum 5 symbols</mat-error>
+        </mat-form-field>
+    </div>
+    <div class='photo'>
+        <input type="file" id ='photo' name="photo"  class="inputfile" (change)='LoadPhoto($event)'  />
+        <label class='label' for="photo">{{photoMessage}}</label>
+    </div>
+    <div class='video'>
+        <input type='file' id ='video' name='video' class='inputfile' (change)='LoadVideo($event)' />
+        <label class='label' for='video'>{{videoMessage}}</label>
+    </div>
+    <div class='input'>
+        <mat-form-field>
+            <input matInput type='text' #description='ngModel' ngModel placeholder="Description">
+        </mat-form-field>
+    </div>
+    <button [disabled] = 'name.invalid || photo == null || video == null' (click)="Load(name.value,description.value)">Load</button>
+    <div style="width: 200px; margin : 10px auto 10px auto" *ngIf='start'>
+        <mat-progress-bar  mode="determinate" [value]="progress" >
+        </mat-progress-bar>
+    </div>
+    <div style='height: 200px'></div>
+</div>
+

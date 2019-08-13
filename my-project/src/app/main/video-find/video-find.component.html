@@ -1,0 +1,65 @@
+<div class='container'>
+
+    <div class='user'>
+        <div class='search'>
+            <div class='input'><input placeholder="Search" #userfind  type="text"></div>
+            <div class='find' (click)="FindUser(userfind.value)"><i class="fa fa-search " aria-hidden="true"></i></div>
+        </div>
+        <div *ngIf='users' class="list">
+            <div *ngFor='let user of users' class='items'>
+                <div class="flex">
+                    <a [routerLink]='["/profile/"+user.Id+"/myvideo"]'>
+                        <div class="image">
+                            <img *ngIf='user.PhotoPath != null' class='img' [src]='user.PhotoPath'>
+                            <img *ngIf='user.PhotoPath == null && user.Sex' class='img' src='assets/Images/usermale.png'>
+                            <img *ngIf='user.PhotoPath == null && !user.Sex' class='img' src='assets/Images/userfemale.jpg'>
+                        </div>
+                    </a> 
+                    <a [routerLink]='["/profile/"+user.Id+"/myvideo"]'>
+                        <div class='text'> {{user.Name+" "+user.Surname}} </div>
+                    </a>
+                </div>
+            </div>
+            <div *ngIf='users.length == 0' style='text-align: center; font-size: 20px;'>
+                Nothing was found!!!
+            </div>
+        </div>
+    </div>
+
+    <div class='common'>
+        <div class='search'>
+            <div class='input'><input #videofind placeholder="Search" [(ngModel)]="str" type="text"></div>
+            <div class='find' (click)="FindVideo(videofind.value)"><i class="fa fa-search " aria-hidden="true"></i></div>
+            <div class='filter'>
+                <select value='None' (change)='Filter(filter.value)' name='Filter' #filter="ngModel" ngModel>
+                    <option value="None">None</option>
+                    <option value="Date">Date</option>
+                    <option value="Views">Views</option>
+                    <option value="Liked">Liked</option>
+                    <option value="Disliked">Disliked</option>
+                </select></div>
+        </div>
+        <div class='videos'>
+            <div *ngFor='let video of videos' class='div'>
+
+                <div class='img'>
+                    <a class='photo' [routerLink]="['/watch/',video.Id]">
+                        <img [src]='video.PhotoPath'>
+                    </a>
+                </div>
+
+                <div class="information">
+                    <a class='photo' [routerLink]="['/watch/',video.Id]">
+                        <div class='name'>{{video.Name}}</div>
+                    </a>
+                    <a class='photo' [routerLink]='["/profile/"+video.UserId+"/myvideo"]'>
+                        <div class="profile">{{video.User.Name+" "+video.User.Surname}}</div>
+                    </a>
+                    <a class='photo' [routerLink]="['/watch/',video.Id]">
+                        <div class="data">Views : {{video.Views}} Created : {{video.DayofCreation | date}} </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

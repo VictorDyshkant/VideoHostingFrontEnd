@@ -1,0 +1,102 @@
+button
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 15px;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+button:hover
+{
+    background-color: rgb(6, 4, 109);
+}
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+form
+{
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: inline-block;
+}
+mat-form-field{
+    width: 250px;
+    margin: 10px 0px;
+}
+input> *{
+    font-size: 18px;
+    width: 100%;
+}
+h3{
+    font-size: 15px;
+    word-wrap: wrap;
+    display: inline-block;
+}
+
+.inform{
+    text-align: center
+}
+.label{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    
+    width: 150px;
+    font-size: 15px;
+    font-weight: 200;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+.label:hover{
+    background-color: rgb(6, 4, 109);
+    transition: background-color 0.3s linier;
+}
+
+.container
+{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    border: solid 2px blue;
+    border-radius: 20px;
+    padding: 20px;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(200px,auto);
+    grid-gap: 1em;
+}
+.img{
+    width: 100%;
+    max-width: 300px;
+    max-height: 300px;
+    min-height: 200px;
+    min-width: 200px;
+}
+.data{
+    text-align: center;
+}
+.form3{
+    display: inline-block;
+    margin-top: 55px;
+    text-align: center;
+}

@@ -1,0 +1,17 @@
+<div class="Block">
+    <nav class="Main">
+        <div class="nav">
+            <a [routerLink]="[ '/main/videosubscriptions']"> <i  class="fa fa-users" aria-hidden="true"></i>Subscriptions</a>
+        </div>
+        <div class="nav">
+            <a [routerLink]="[ '/main/videofind']"><i class="fa fa-video-camera " aria-hidden="true"></i>Videos</a>
+        </div>
+        <div class="nav">
+            <a [routerLink]="[ '/main/profile',id]"> <i class="fa fa-user" aria-hidden="true"> </i>User</a>
+        </div>
+        <div class='nav'>
+            <i (click)="Logout()" class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+        </div>
+    </nav>
+</div>
+<router-outlet></router-outlet>

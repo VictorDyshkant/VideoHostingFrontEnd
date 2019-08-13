@@ -1,0 +1,84 @@
+body{
+    background-image: url("../Images/login.png");
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    background-position: center;
+}
+.Login{
+    display: block;
+    position: relative;
+}
+.login{
+    text-align: center;
+    position: absolute;
+    width: 35%;
+    margin-left: 32.5%;
+    margin-top: 7%;
+    border: solid 2px black;
+    border-radius: 10px;
+    padding: 40px;
+    background-color: white;
+}
+p{
+    font-size: 32px;
+    text-align: center;
+    display: inline-block;
+}
+p:after{
+    display: block;
+    content: "";
+    width: 120px;
+    height: 3px;
+    background-color: blue;
+    margin-top: 10px;
+}
+input.form-control.ng-touched.ng-invalid
+{
+    border: solid red 2px;
+}
+input.form-control.ng-touched.ng-valid
+{
+    border: solid green 2px;
+}
+button{
+    display: inline-block;
+    font-size: 20px;
+    background-color: rgb(25, 25, 150);
+    color: white;
+    transition: color .3s linear, background-color .3s linear,border .3s linear;
+    cursor: pointer; 
+    border-radius: 5px; 
+    border: none;
+    margin-top: 10px;
+}
+button:hover{
+    background-color: white;
+    border-color: blue;
+    border:2px solid;
+    color: blue;
+    
+}
+label{
+    margin-top: 20px;
+    display: block;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+a{
+    color: blue;
+    display: block;
+    margin-top: 8px;
+    font-size: 15px;
+}
+#error{
+    font-size: 18px;
+    border-radius: 10px;
+    display: block;
+    padding: 3px;
+    word-wrap: break-word;
+}
+#problem{
+    font-size: 15px;
+    border-radius: 5px;
+}

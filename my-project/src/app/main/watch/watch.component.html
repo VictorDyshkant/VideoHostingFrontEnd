@@ -1,0 +1,62 @@
+<div class="container" *ngIf ='video != null && user != null'>
+    <div class='search'>
+        <div class='input'><input #search placeholder="Search" type="text"></div>
+        <div class='find' (click)="Find(search.value)"><i class="fa fa-search " aria-hidden="true"></i></div>
+    </div>
+
+    <div class="div">
+        <div *ngIf='video.VideoPath != null' class="video">
+            <video controls="controls" [poster] = "video.PhotoPath">
+                <source [src]='video.VideoPath'>
+            </video>
+        </div>
+        <div class='name'>{{video.Name}}</div>
+        <div class="data">
+            <div class="day">Created : {{video.DayofCreation | date}}</div>
+            <div>Views: {{video.Views}} </div>
+            <div class='LiDi'>
+                <div class='like' (click)="PutLike()" ><i class="fa fa-thumbs-o-up " aria-hidden="true"></i> {{video.Likes}} </div>
+                <div class='dislike' (click)="PutDislike()"><i class="fa fa-thumbs-o-down " aria-hidden="true"></i>{{video.Dislikes}}</div>
+            </div>
+            <div *ngIf='video.UserId == id || user.Admin' class='delete' (click)="DeleteVideo()"><i class="fa fa-trash fa-2x " aria-hidden="true"></i></div>
+            <div></div>
+        </div>
+        <div class="user">
+            <a [routerLink]='["/profile/"+video.UserId+"/myvideo"]'>
+                <div class='img' >
+                    <img *ngIf='video.User.PhotoPath != null' [src] = 'video.User.PhotoPath'>
+                    <img *ngIf='video.User.PhotoPath == null && video.User.Sex' src = 'assets/Images/usermale.png'>
+                    <img *ngIf='video.User.PhotoPath == null && !video.User.Sex' src = 'assets/Images/userfemale.jpg'>
+                </div>
+            </a>
+            <a [routerLink]='["/profile/"+video.UserId+"/myvideo"]'>
+                <div class='username'>{{video.User.Name +' '+video.User.Surname}}</div>
+            </a>
+        </div>
+        <div class="description">{{video.Description}}</div>
+        <div class="makecomentary">
+            <div class='img'> 
+                <img *ngIf='user.PhotoPath != null' [src] = 'user.PhotoPath'>
+                <img *ngIf='user.PhotoPath == null && user.Sex' src = 'assets/Images/usermale.png'>
+                <img *ngIf='user.PhotoPath == null && !user.Sex' src = 'assets/Images/userfemale.jpg'></div>
+            <textarea class='textarea' #coment [(ngModel)]="comment" ></textarea>
+            <button [disabled]='coment.value != ""' (click) = 'Comment(coment.value)'>Comment</button>
+        </div>
+        <div class='line'></div>
+        <div *ngFor='let comentary of comentaries' class="comentaries">
+            <div class='img'>
+               <a [routerLink]='["/profile/"+comentary.UserId+"/myvideo"]'> 
+                <img *ngIf='comentary.User.PhotoPath != null' [src] = 'comentary.User.PhotoPath'>
+                <img *ngIf='comentary.User.PhotoPath == null && comentary.User.Sex' src = 'assets/Images/usermale.png'>
+                <img *ngIf='comentary.User.PhotoPath == null && !comentary.User.Sex' src = 'assets/Images/userfemale.jpg'>
+            </a>
+                <i *ngIf='comentary.UserId == id || user.Admin' (click)="DeleteComentary(comentary)" class="fa fa-trash" style='margin-left: 20px; cursor: pointer;' aria-hidden="true"></i>
+            </div>
+            <div class='comentary'>
+                    <a [routerLink]='["/profile/"+comentary.UserId+"/myvideo"]'><div style='color: black;font-size: 15px;'>{{comentary.User.Name+" "+comentary.User.Surname}} {{comentary.DayofCreation | date}}</div></a>
+                <div>{{comentary.Content}}</div>
+            </div>
+        </div>
+    </div>
+    <div style='height: 100px;'></div>
+</div>

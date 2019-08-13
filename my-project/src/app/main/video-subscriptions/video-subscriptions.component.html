@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="people">
+        <div class='innerpeople'>
+            <div class="header">
+                Subscriptions
+            </div>
+            <div class="list">
+                <div *ngFor='let user of Users' class='items'> 
+                    <div class="flex">
+                        <a [routerLink]='["/profile/"+user.Id+"/myvideo"]'>
+                           <div class="image">
+                                <img *ngIf='user.PhotoPath != null' class='img' [src]='user.PhotoPath'>
+                                <img *ngIf='user.PhotoPath == null && user.Sex' class='img' src='assets/Images/usermale.png'>
+                                <img *ngIf='user.PhotoPath == null && !user.Sex' class='img' src='assets/Images/userfemale.jpg'>
+                        </div>
+                    </a>
+                    <a [routerLink]='["/profile/"+user.Id+"/myvideo"]'>
+                        <div class='text'> {{user.Name+' '+user.Surname}} </div>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="videos">
+            <div class="innervideos">
+                    <div *ngFor='let video of Videos' class='div'>
+                        <div class="video">
+                            <a class='photo' [routerLink]="['/watch',video.Id]">
+                                <img [src]='video.PhotoPath'>
+                            </a>
+                        </div>
+                        <div class="name">
+                            <a [routerLink]='["/watch",video.Id]'>
+                                <div class="videoname">{{video.Name}}
+                                </div>
+                            </a>
+                        </div>
+                        <div class="user">
+                            <a [routerLink]='["/profile/"+video.UserId+"/myvideo" ]'>
+                                <div class="username">
+                                    {{video.User.Name +' '+ video.User.Surname}}
+                                </div>
+                            </a>
+                        </div>
+                        <div class="views">
+                            <a [routerLink]='[ "/watch",video.Id ]'>
+                                <div class='view'>
+                                    Views: {{video.Views}}<br>
+                                    Created: {{video.DayofCreation | date}}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+        <!--<video width="400" height="300" controls="controls" >
+        <source src="./video.mp4">
+        </video>-->
+    </div>
+</div>
