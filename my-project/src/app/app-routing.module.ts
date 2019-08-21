@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { Guard } from './enviroment/guard';
-import { TempComponent } from './temp/temp.component';
 import { GuardUpdate } from './enviroment/guardupdate';
 
 
@@ -28,10 +27,6 @@ const routes: Routes = [
     path: 'updateuser/:id',
     loadChildren: () => import('./update-user/update-user.module').then(m=>m.UpdateUserModule),
      canActivate:[GuardUpdate]
-  },
-  {
-    path:'temp',
-    component:TempComponent
   },
   {
     path : '',

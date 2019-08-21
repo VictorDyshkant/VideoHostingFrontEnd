@@ -52,7 +52,6 @@ export class VideoAddComponent implements OnInit {
     this.start = true;
     let interval = setInterval(()=>{
       this.progress += 0.1;
-      console.log(this.progress);
       if(this.progress >= 100)
       {
         clearInterval(interval);
@@ -75,7 +74,7 @@ export class VideoAddComponent implements OnInit {
           .subscribe(
             (resp)=>{
               console.log(resp);
-              this.nav.navigate(['/profile/'+localStorage.getItem('id')+'/myvideo']);
+              this.nav.navigate(['/profile/'+localStorage.getItem('Id')+'/myvideo']);
             },
             (error:HttpErrorResponse)=>{
               console.log(error);

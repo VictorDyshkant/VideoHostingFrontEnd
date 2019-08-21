@@ -39,8 +39,8 @@
                 <img *ngIf='user.PhotoPath != null' [src] = 'user.PhotoPath'>
                 <img *ngIf='user.PhotoPath == null && user.Sex' src = 'assets/Images/usermale.png'>
                 <img *ngIf='user.PhotoPath == null && !user.Sex' src = 'assets/Images/userfemale.jpg'></div>
-            <textarea class='textarea' #coment [(ngModel)]="comment" ></textarea>
-            <button [disabled]='coment.value != ""' (click) = 'Comment(coment.value)'>Comment</button>
+            <textarea class='textarea' #coment [(ngModel)] ='comment' ></textarea>
+            <button [disabled]='coment.value == ""'  (click) = 'Comment()'>Comment</button>
         </div>
         <div class='line'></div>
         <div *ngFor='let comentary of comentaries' class="comentaries">

@@ -17,7 +17,7 @@ export class WatchComponent implements OnInit {
   id: string;
   user: User;
 
-  comment:string;
+  comment: string;
   constructor(private route: ActivatedRoute, private http: HttpClient, private nav: Router) {
     let videoId: string;
     this.id = localStorage.getItem('Id');
@@ -51,31 +51,35 @@ export class WatchComponent implements OnInit {
   ngOnInit() {
   }
 
-  Find(str:string)
-  {
-    this.nav.navigate(['/videofind',str]);
+  Find(str: string) {
+    this.nav.navigate(['/videofind', str]);
   }
-  Comment(comentary: string) {
+  Comment() {
 
-    this.comment = null;
     let com: Comentary = new Comentary();
     com.UserId = this.id;
     com.VideoId = this.video.Id;
-    com.Content = comentary;
+    com.Content = this.comment;
     this.http.post("/api/comentary", com).subscribe(
-      (resp) => { },
+      (resp) => {
+        this.http.get('/api/comentary/' + this.video.Id).subscribe(
+          (resp) => {
+            this.comentaries = <Comentary[]>resp;
+            console.log(this.comentaries);
+          },
+          (error) => { console.log(error) }
+        )
+      },
       (error) => { console.log(error) }
     );
-    com.User = this.user;
-    com.DayofCreation = new Date();
-    this.comentaries.push(com);
+    this.comment = null;
 
   }
 
   DeleteVideo() {
     if (confirm('Do you want to delete this video?')) {
-      this.http.delete("/api/video/" + this.video.Id).subscribe(resp => {this.nav.navigate(['/main/videofind']); }, error => { console.log(error) });
-      
+      this.nav.navigate(['/main/videofind']);
+        this.http.delete("/api/video/" + this.video.Id).subscribe(resp => {}, error => {});
     }
   }
 
@@ -89,35 +93,34 @@ export class WatchComponent implements OnInit {
   PutLike() {
     this.http.put("/api/like/" + this.video.Id, {}).subscribe(resp => { }, error => { });
 
-    if(this.video.Liked)
-    {
+    if (this.video.Liked) {
       this.video.Likes--;
+      this.video.Liked = false;
     }
-    if(!this.video.Liked)
-    {
+    else {
+      
+      if (this.video.Disliked) {
+        this.video.Dislikes--;
+      }
       this.video.Likes++;
+      this.video.Liked = true;
+      this.video.Disliked = false;
     }
-    if (this.video.Disliked) {
-      this.video.Dislikes--;
-    }
-    this.video.Liked = true;
-    this.video.Disliked = false;
-
   }
   PutDislike() {
     this.http.put("/api/dislike/" + this.video.Id, {}).subscribe(resp => { }, error => { });
-    if(this.video.Disliked)
-    {
+
+    if (this.video.Disliked) {
       this.video.Dislikes--;
+      this.video.Disliked = false;
     }
-    if(!this.video.Disliked)
-    {
+    else {
+      if (this.video.Liked) {
+        this.video.Likes--;
+      }
       this.video.Dislikes++;
+      this.video.Disliked = true;
+      this.video.Liked = false;
     }
-    if (this.video.Liked) {
-      this.video.Likes--;
-    }
-    this.video.Liked = false;
-    this.video.Disliked = true;
   }
 }

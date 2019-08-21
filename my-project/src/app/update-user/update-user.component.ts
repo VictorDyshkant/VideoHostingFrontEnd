@@ -79,7 +79,7 @@ export class UpdateUserComponent implements OnInit {
     this.http.put('/api/ResertPassword',this.userPassword)
     .subscribe(
       resp=>{
-        alert('Your password was updated');2
+        alert('Your password was updated');
       },
       error=>{console.log(error)}
     );

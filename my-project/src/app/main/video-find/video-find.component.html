@@ -32,11 +32,10 @@
             <div class='find' (click)="FindVideo(videofind.value)"><i class="fa fa-search " aria-hidden="true"></i></div>
             <div class='filter'>
                 <select value='None' (change)='Filter(filter.value)' name='Filter' #filter="ngModel" ngModel>
-                    <option value="None">None</option>
                     <option value="Date">Date</option>
                     <option value="Views">Views</option>
-                    <option value="Liked">Liked</option>
-                    <option value="Disliked">Disliked</option>
+                    <option value="Liked">Likes</option>
+                    <option value="Disliked">Dislikes</option>
                 </select></div>
         </div>
         <div class='videos'>

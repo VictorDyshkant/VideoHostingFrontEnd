@@ -13,7 +13,7 @@ export class VideoDislikedComponent implements OnInit {
   Videos:Video[];
   constructor(private http: HttpClient, private service: ProfileService) {
 
-    this.http.get('/api/videosuser/' + this.service.GetId()).subscribe(
+    this.http.get('/api/videosdisliked/' + this.service.GetId()).subscribe(
       (resp) => {
         this.Videos = <Video[]>resp;
       },
